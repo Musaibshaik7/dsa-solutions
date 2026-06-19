@@ -1,3 +1,4 @@
+'''day1'''
 def traverse(arr):
     for i in range(len(arr)):
         print(arr[i])
@@ -92,3 +93,27 @@ insert_arr(arr)
 delete_at_pos(arr)
 reverse_arr(arr)
 frequency_count(arr)
+
+'''DAY 2'''
+# o(log n) time complexity
+el=1024
+while(el>0):
+    print(el,end=" ")
+    el=el//2
+    
+print("\n")
+el=1
+while(el<1025):
+    print(el,end=" ")
+    el=el*2
+    
+print("\n")
+el=1
+while(el<1023789):
+    print(el,end=" ")
+    el=el*7
+
+'''O(log n) means it is bettern than o(n) and O(n²) because it performs only half of iterations and 
+to know that it is O(log n) we can see a pattern above any number should be multiplying✅ or getting divided✅
+by integer greater than 1 constantly'''
+#for remaining time complexities check time complexity file

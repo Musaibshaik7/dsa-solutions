@@ -1,1 +1,0 @@
-def traverse(arr):
