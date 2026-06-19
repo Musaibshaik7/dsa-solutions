@@ -1,0 +1,394 @@
+# 🧠 Time Complexity Cheat Sheet
+
+## Rule 1: Constant Work
+
+```python
+print(arr[0])
+a = b + c
+```
+
+Pattern:
+
+* One operation
+
+Complexity:
+
+```
+O(1)
+```
+
+---
+
+## Rule 2: Linear Growth
+
+```python
+for i in range(n):
+    print(i)
+```
+
+or
+
+```python
+i = 0
+while i < n:
+    i += 1
+```
+
+Pattern:
+
+* Variable changes by a constant amount.
+* (+1, -1, +5, etc.)
+
+Complexity:
+
+```
+O(n)
+```
+
+---
+
+## Rule 3: Logarithmic Growth
+
+```python
+i = 1
+while i < n:
+    i *= 2
+```
+
+```python
+i = n
+while i > 1:
+    i //= 2
+```
+
+Pattern:
+
+* Multiply or divide by a constant.
+* (*2, *3, //2, //5, etc.)
+
+Complexity:
+
+```
+O(log n)
+```
+
+---
+
+## Rule 4: Linear × Linear
+
+```python
+for i in range(n):
+    for j in range(n):
+        print(i, j)
+```
+
+Pattern:
+
+* Inner loop does SAME work every iteration.
+
+Calculation:
+
+```
+n × n
+```
+
+Complexity:
+
+```
+O(n²)
+```
+
+---
+
+## Rule 5: Arithmetic Series
+
+```python
+for i in range(n):
+    for j in range(i):
+        print(i, j)
+```
+
+Work Done:
+
+```
+0
+1
+2
+3
+...
+n
+```
+
+Series:
+
+```
+1 + 2 + 3 + ... + n
+```
+
+Formula:
+
+```
+n(n+1)/2
+```
+
+Complexity:
+
+```
+O(n²)
+```
+
+Memory Trick:
+Whenever you see
+
+for j in range(i)
+
+think
+
+1 + 2 + 3 + ... + n
+
+---
+
+## Rule 6: Geometric Series
+
+```python
+i = n
+
+while i > 1:
+    for j in range(i):
+        print(j)
+
+    i //= 2
+```
+
+Work Done:
+
+```
+n
+n/2
+n/4
+n/8
+...
+```
+
+Series:
+
+```
+n + n/2 + n/4 + ...
+```
+
+Sum:
+
+```
+≈ 2n
+```
+
+Complexity:
+
+```
+O(n)
+```
+
+Memory Trick:
+Whenever work is halved every iteration,
+DON'T multiply.
+
+ADD the work.
+
+---
+
+## Rule 7: Linear × Logarithmic
+
+```python
+for i in range(n):
+
+    j = 1
+
+    while j < n:
+        j *= 2
+```
+
+Pattern:
+
+* Outer = n
+* Inner = log n
+* Same every iteration
+
+Calculation:
+
+```
+n × log n
+```
+
+Complexity:
+
+```
+O(n log n)
+```
+
+---
+
+## Rule 8: Log × Log
+
+```python
+i = 1
+
+while i < n:
+
+    j = 1
+
+    while j < n:
+        j *= 2
+
+    i *= 2
+```
+
+Pattern:
+
+* Outer = log n
+* Inner = log n
+* Same every iteration
+
+Calculation:
+
+```
+log n × log n
+```
+
+Complexity:
+
+```
+O(log² n)
+```
+
+---
+
+## Rule 9: Tricky Geometric
+
+```python
+i = n
+
+while i > 1:
+
+    j = i
+
+    while j > 1:
+        j //= 2
+
+    i //= 2
+```
+
+Pattern:
+
+* Outer = log n
+* Inner ≈ log n every iteration
+
+Calculation:
+
+```
+log n × log n
+```
+
+Complexity:
+
+```
+O(log² n)
+```
+
+---
+
+## Rule 10: Triple Nested Arithmetic
+
+```python
+for i in range(n):
+    for j in range(i):
+        for k in range(j):
+            print(i, j, k)
+```
+
+Pattern:
+
+```
+1 + 2 + 3 + ... + n
+
+inside another
+
+1 + 2 + 3 + ... + n
+```
+
+Complexity:
+
+```
+O(n³)
+```
+
+---
+
+# GOLDEN DECISION TREE
+
+Whenever you see nested loops ask:
+
+1. How many times does the OUTER loop run?
+
+2. How many times does the INNER loop run?
+
+3. Does the inner loop do the SAME work every iteration?
+
+YES
+→ Multiply
+
+NO
+→ Write the work as a series.
+
+Examples:
+
+Arithmetic Series
+
+```
+1 + 2 + 3 + ... + n
+```
+
+→ O(n²)
+
+Geometric Series
+
+```
+n + n/2 + n/4 + ...
+```
+
+→ O(n)
+
+---
+
+# QUICK MEMORY TABLE
+
+| Pattern           | Complexity |
+| ----------------- | ---------- |
+| Constant          | O(1)       |
+| Linear            | O(n)       |
+| Logarithmic       | O(log n)   |
+| Linear × Linear   | O(n²)      |
+| Arithmetic Series | O(n²)      |
+| Geometric Series  | O(n)       |
+| Linear × Log      | O(n log n) |
+| Log × Log         | O(log² n)  |
+| Triple Arithmetic | O(n³)      |
+
+---
+
+# ONE GOLDEN RULE
+
+Never guess.
+
+Always ask:
+
+1. Is the variable increasing/decreasing by a constant?
+   → O(n)
+
+2. Is the variable multiplying/dividing by a constant?
+   → O(log n)
+
+3. Does the inner loop always do the same work?
+   → Multiply.
+
+4. Does the work change every iteration?
+   → Write the series first, then simplify.
