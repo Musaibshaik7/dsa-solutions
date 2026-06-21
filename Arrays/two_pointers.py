@@ -105,3 +105,224 @@ while left<right:
         left += 1
     else:
         right -= 1
+# ==========================================
+# DAY 4 — SAME DIRECTION & THREE POINTERS
+# ==========================================
+
+"""
+==========================================
+SAME DIRECTION TWO POINTERS
+==========================================
+
+Definition:
+Both pointers start from the left and move only forward.
+
+Usually:
+
+read  -> scans every element
+write -> places useful elements
+
+Pattern:
+
+write = 0
+
+for read in range(len(nums)):
+
+    if current element is useful:
+        nums[write] = nums[read]
+        write += 1
+
+------------------------------------------
+
+When to use:
+
+1. Remove Element
+2. Move Zeroes
+3. Remove Duplicates
+4. Compress Array
+5. Stable Filtering
+
+------------------------------------------
+
+Golden Rules
+
+Read Pointer
+
+✔ Visits every element.
+✔ Always moves forward.
+
+------------------------------------------
+
+Write Pointer
+
+✔ Moves ONLY when keeping an element.
+✔ Never moves backward.
+
+------------------------------------------
+
+Memory Trick
+
+Read  = Scanner 👀
+
+Write = Painter ✍️
+
+Scanner checks everything.
+
+Painter writes only useful elements.
+
+------------------------------------------
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(1)
+"""
+
+
+
+"""
+==========================================
+THREE POINTERS (Dutch National Flag)
+==========================================
+
+Definition:
+
+Used when an array must be divided
+into THREE regions.
+
+Most famous problem:
+
+LeetCode 75
+Sort Colors
+
+Contains only:
+
+0
+1
+2
+
+------------------------------------------
+
+Pointers
+
+low
+mid
+high
+
+Meaning:
+
+low  -> next position for 0
+
+mid  -> current element being checked
+
+high -> next position for 2
+
+------------------------------------------
+
+Rules
+
+If nums[mid] == 0
+
+Swap(mid, low)
+
+low += 1
+
+mid += 1
+
+------------------------------------------
+
+If nums[mid] == 1
+
+Just move
+
+mid += 1
+
+Reason:
+1 already belongs in the middle.
+
+------------------------------------------
+
+If nums[mid] == 2
+
+Swap(mid, high)
+
+high -= 1
+
+DO NOT move mid.
+
+Reason:
+
+The element coming from the high side
+has NOT been checked yet.
+
+------------------------------------------
+
+Why not move mid after swapping with high?
+
+Because an UNKNOWN element
+comes from the right.
+
+We must inspect it first.
+
+------------------------------------------
+
+Memory Trick
+
+0s grow from LEFT.
+
+2s grow from RIGHT.
+
+1s automatically stay in the MIDDLE.
+
+------------------------------------------
+
+Loop
+
+while mid <= high
+
+NOT
+
+for mid in range(...)
+
+Reason:
+
+Sometimes mid moves.
+
+Sometimes it stays.
+
+------------------------------------------
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(1)
+"""
+
+nums=[0,0,1,1,2,2]
+
+
+left=0
+right=len(nums)-1
+mid=0
+while(mid<=right):
+    if(nums[mid]==2):
+        nums[mid],nums[right]=nums[right],nums[mid]
+        right-=1
+    elif(nums[mid]==0):
+        nums[mid],nums[left]=nums[left],nums[mid]
+        mid+=1
+        left+=1
+    else:
+        mid+=1
+   
+print(nums)
+
+        
+        
+            
